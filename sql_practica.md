@@ -156,5 +156,94 @@ ON A.id_fecha=E.id_fecha;
 periodo pero de 2015.
 ¿Qué año se vendió más en el mismo periodo?
 ```sql
+--Ventas por paises de 21/12/2016 a 31/12/2016
+SELECT SUM(ventas) AS ventas_2016,
+Pais
+FROM Ventas_View
+WHERE Fecha BETWEEN '2016-12-21' AND '2016-12-31'
+GROUP BY Pais
+ORDER BY SUM(ventas) DESC;
+
+--Ventas por paises de 21/12/2015 a 31/12/2015
+SELECT SUM(ventas) AS ventas_2016,
+Pais
+FROM Ventas_View
+WHERE Fecha BETWEEN '2015-12-21' AND '2015-12-31'
+GROUP BY Pais
+ORDER BY SUM(ventas) DESC;
+
+--Comparacion total ventas en los dos periodos
+SELECT SUM(ventas) AS ventas_2016,
+(
+SELECT SUM(ventas)
+FROM Ventas_View
+WHERE Fecha BETWEEN '2015-12-21' AND '2015-12-31'
+) AS ventas_2015
+FROM Ventas_View
+WHERE Fecha BETWEEN '2016-12-21' AND '2016-12-31';
+```
+13. Sacar un listado de ventas de la vista creada, que muestre las ventas para el año 2015 y enero. (usar las funciones de fecha de
+SQL Server).
+```sql
+SELECT SUM(ventas) AS Ventas_enero_2015
+FROM Ventas_View
+WHERE MONTH(Fecha)=1
+AND YEAR(Fecha)=2015;
+```
+14. Listar los países que facturen un importe de ventas total de más de 50.000 en alguno de los dos años.
+```sql
+SELECT SUM(ventas) AS Ventas,
+Pais
+FROM Ventas_View
+GROUP BY Pais
+HAVING SUM(ventas)>50000;
+```
+15. Listar los países que facturen un importe de ventas total de más de 10.000 en el mes de febrero de 2016.
+```sql
+SELECT SUM(ventas) AS Ventas,
+Pais
+FROM Ventas_View
+WHERE MONTH(Fecha)=2
+AND YEAR(Fecha)=2016
+GROUP BY Pais
+HAVING SUM(ventas)>10000;
+```
+16. La media de ventas de España. 
+```sql
+SELECT AVG(ventas) AS media_ventas_esp
+FROM Ventas_View
+WHERE Pais='Spain';
+```
+17. Contar el número de países que en enero de 2016 tienen un total de ventas mayor 100. Hacer la consulta sobre la tabla creada de ventas_negocio.
+```sql
+SELECT COUNT(Pais) AS num_paises
+FROM Ventas_View
+WHERE MONTH(Fecha)=1
+AND YEAR(Fecha)=2016
+HAVING SUM(ventas)>100;
+```
+18. Obtener la venta máxima de enero, en la categoría Clothing, para los dos años (2015, 2016) ¿Que año se hizo la máxima venta más alta?
+```sql
+SELECT MAX(ventas) AS venta_max,
+YEAR(Fecha) AS anio
+FROM Ventas_View
+WHERE Categoria='Clothing'
+AND MONTH(Fecha)=1
+GROUP BY YEAR(Fecha);
+```
+19. Mostrar los países cuyas descripciones empiecen por la letra S.
+```sql
+SELECT desc_pais
+FROM d_pais
+WHERE desc_pais LIKE'S%';
+```
+20. Mostrar los países cuyas descripciones empiecen por la letra S y terminen con la letra n.
+```sql
+SELECT desc_pais
+FROM d_pais
+WHERE desc_pais LIKE'S%n';
+```
+21. La tarjeta más utilizada por cada país (es decir que se haga más número de ventas no mayor importe).
+```sql
 
 ```
