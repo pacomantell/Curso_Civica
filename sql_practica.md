@@ -135,3 +135,26 @@ GROUP BY desc_tipo_tarjeta;
 ```
 11. Crear una vista con el número de ventas y los diferentes conceptos de negocio con lo que hemos trabajado: categoría, país, tipo 
 de tarjeta, fecha.
+```sql
+CREATE VIEW Ventas AS
+SELECT ventas,
+desc_categoria AS Categoria,
+desc_pais AS Pais,
+desc_tipo_tarjeta AS Tarjeta,
+fecha AS Fecha
+FROM h_ventas A
+INNER JOIN d_categoria B
+ON A.id_categoria=B.id_categoria
+INNER JOIN d_pais C
+ON A.id_pais=C.id_pais
+INNER JOIN d_tipo_tarjeta D
+ON A.id_tipo_tarjeta=D.id_tipo_tarjeta
+INNER JOIN d_fecha E
+ON A.id_fecha=E.id_fecha;
+```
+12. Hacer una consultas de las ventas por países en el periodo de fechas de 21/12/2016 a 31/12/2016. Compararla con el mismo
+periodo pero de 2015.
+¿Qué año se vendió más en el mismo periodo?
+```sql
+
+```
