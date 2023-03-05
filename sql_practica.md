@@ -77,7 +77,7 @@ FROM h_ventas A
 INNER JOIN d_categoria B
 ON A.id_categoria=B.id_categoria
 GROUP BY desc_categoria
-ORDER BY desc_categoria;
+ORDER BY SUM(ventas) DESC;
 ```
 6. ¿En que años se hacen más ventas?
 ```sql
