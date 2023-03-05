@@ -63,11 +63,11 @@ SELECT SUM(ventas) AS Total_Ventas FROM h_ventas;
 ```
 4. Mostrar el importe total de ventas de la empresa en función de la categoría (id_categoria).
 ```sql
-SELECT SUM(ventas)AS Total_Ventas,
+SELECT SUM(ventas) AS Total_Ventas,
 id_categoria
 FROM h_ventas
 GROUP BY id_categoria
-ORDER BY id_categoria;
+ORDER BY SUM(ventas) DESC;
 ```
 5. Mostrar las ventas de la empresa en función de la desc_categoria cruzando con la tabla d_categoria.
 ```sql
