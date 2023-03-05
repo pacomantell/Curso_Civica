@@ -123,8 +123,7 @@ GROUP BY anio;
 ```
 10. ¿Con que tipo de tarjeta compra más la gente de Francia?
 ```sql
-SELECT Top 1 SUM(ventas) AS Total_Ventas,
-desc_pais,
+SELECT TOP 1 SUM(ventas) AS Total_Ventas,
 desc_tipo_tarjeta
 FROM h_ventas A
 INNER JOIN d_pais B
@@ -132,7 +131,7 @@ ON A.id_pais=B.id_pais
 INNER JOIN d_tipo_tarjeta C
 ON A.id_tipo_tarjeta=C.id_tipo_tarjeta
 WHERE desc_pais='France'
-GROUP BY desc_tipo_tarjeta, desc_pais;
+GROUP BY desc_tipo_tarjeta;
 ```
 11. Crear una vista con el número de ventas y los diferentes conceptos de negocio con lo que hemos trabajado: categoría, país, tipo 
 de tarjeta, fecha.
