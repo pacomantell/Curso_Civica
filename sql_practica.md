@@ -111,8 +111,7 @@ ORDER BY SUM(ventas) DESC;
 ```
 9. Listar todas las ventas por año en el país de España. Utilizando la cláusula correspondiente.
 ```SQL
-SELECT SUM(ventas) AS Total_Ventas,
-desc_pais,
+SELECT SUM(ventas) AS Total_Ventas_Spain,
 anio
 FROM h_ventas A
 INNER JOIN d_pais B
@@ -120,7 +119,7 @@ ON A.id_pais=B.id_pais
 INNER JOIN d_fecha C
 ON A.id_fecha=C.id_fecha
 WHERE desc_pais='Spain'
-GROUP BY anio, desc_pais;
+GROUP BY anio;
 ```
 10. ¿Con que tipo de tarjeta compra más la gente de Francia?
 ```sql
